@@ -1,0 +1,259 @@
+<style>
+    .scroll-div {
+        overflow-y: scroll;
+        height: 600px;
+        width: 100%;
+    }
+</style>
+
+<div class="modal fade" id="linkUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #5F9EA0;">
+                <h4 class="modal-title" id="exampleModalLabel">Link User to Employee</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+                <div class="user-message user-message--error" style="display: none;"></div>
+                <form action="/linkUser" method="POST" id="link_account">
+                    <input type="hidden" name="_csrf" id="crsf" value="<%= csrfToken %>">
+                    <input type="number" hidden name="userId" id="userId" value="<%= userDetails[0] %>">
+
+                    <div class="form-group">
+                        <label for="user_empl">Employee</label>
+                        <select type="number" required name="user_empl" id="user_empl">
+                      <option value="">Select employee for user</option>
+                    </select>
+                        <span id="error_user_empl" class="text-danger"></span>
+                        <span id="error_userId" class="text-danger"></span>
+                    </div>
+                    <label>Link an employee for this account</label>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="link_btn" class="btn btn-primary">Link</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="userProfileErrorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel" style="color: red;">Validation Error has Occurred</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="user-message user-message--error" style="display: none;"></div> -->
+                <span id="userProfile_errors"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #483D8B;">
+                <h4 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i> Change Password</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+                <div class="user-message user-message--error" style="display: none;"></div>
+                <form action="/changepassword" method="POST" id="changepassword">
+                    <input type="hidden" name="_csrf" id="crsf" value="<%= csrfToken %>">
+                    <input type="number" hidden name="userId_pass" id="userId_pass" value="<%= userDetails[0] %>">
+
+                    <div class="form-group">
+                        <label for="old_pass"><i class="fas fa-lock"></i> Old Password</label>
+                        <input type="password" required name="old_pass" placeholder="Enter old password" id="old_pass">
+                        <span id="error_old_pass" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new_pass"><i class="fas fa-lock"></i> New Password</label>
+                        <input type="password" required name="new_pass" placeholder="Enter new password" id="new_pass">
+                        <span id="error_new_pass" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="conf_pass"><i class="fas fa-lock-open"></i> Confirm Password</label>
+                        <input type="password" required name="conf_pass" placeholder="Repeat password" id="conf_pass">
+                        <span id="error_conf_pass" class="text-danger"></span>
+                    </div>
+                    <label style="color:red;">You will be logged out if password change is successful</label>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="link_btn" class="btn btn-primary">Change</button>
+                </form>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+<div class="modal fade" id="changeImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #483D8B;">
+                <h4 class="modal-title" id="exampleModalLabel"><i class="fas fa-upload"></i> Upload new image</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+                <div class="user-message user-message--error" style="display: none;"></div>
+                <form action="/uploadImage" method="POST" id="uploadImage">
+                    <input type="hidden" name="_csrf" id="crsf" value="<%= csrfToken %>">
+                    <input type="text" hidden name="uuid_image" id="uuid_image" value="<%= userDetails[5] %>">
+
+                    <div class="form-group">
+                        <label for="newImage"><i class="fas fa-upload"></i> Select image</label>
+                        <input type="file" required name="image" class="checkfil" id="image">
+                        <span id="error_image" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <center><label><img id="oldpic" style="width: 50%; height: 20%; padding-left: 10px;" class="img-profile rounded-circle" src="/img/avatar.svg"></label></center>
+                    </div>
+                    
+                    <label style="color:blue;">Page refresh will be required to effect changes.</label>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="" class="btn btn-primary">Upload</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addSystUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color:#483D8B;">
+                <h4 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> Create System User</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+                <div class="user-message user-message--error" style="display: none;"></div>
+                <form action="/createSystUser" method="POST" id="addSystUser">
+                    <input type="hidden" name="_csrf" id="crsf" value="<%= csrfToken %>">
+                    <input type="hidden" name="gen_pass" id="gen_pass" value="">
+
+                    <div class="form-group">
+                        <label for="emplytoadd">Employee</label>
+                        <select type="number" required name="emplytoadd" id="emplytoadd">
+                      <option value="">Select employee for user</option>
+                    </select>
+                        <span id="error_emplyID" class="text-danger"></span>
+                        <span id="error_emplytoadd" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user_role">Role</label>
+                        <select type="text" required name="user_role" id="user_role">
+                      <option value="">Select employee role</option>
+                      <option value="STDU">Standard user</option>
+                      <option value="HOD">HOD/Supervisor</option>
+                      <option value="Admin">Administrator</option>
+                    </select>
+                        <span id="error_role" class="text-danger"></span>
+                        <span id="error_user_role" class="text-danger"></span>
+                    </div>
+                    <div id="showSummary" style="display: none; border: 2px solid; border-radius: 4px;">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="createUser" class="btn btn-primary">Submit</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editUserRoleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color:#483D8B;">
+                <h4 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i> Edit User Role and Status</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+                <div class="user-message user-message--error" style="display: none;"></div>
+                <form action="/editUserRoleStatus" method="POST" id="editUserRole">
+                    <input type="hidden" name="_csrf" id="crsf" value="<%= csrfToken %>">
+                    <input type="hidden" name="user_ID" id="user_ID" value="">
+
+                    <div class="form-group">
+                        <label for="fulname">User</label>
+                        <input type="text" readonly required name="fulname" value="" placeholder="" id="fulname">
+                        <!-- <span id="error_" class="text-danger"></span> -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Current role</label>
+                        <input type="text" readonly required name="" value="" placeholder="" id="currole">
+                        <!-- <span id="error_" class="text-danger"></span> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="">Current status</label>
+                        <input type="text" readonly required name="" value="" placeholder="" id="curstatus">
+                        <!-- <span id="error_" class="text-danger"></span> -->
+                    </div>
+                    <span style="color: blue;">Edit role or Status</span>
+                    <hr>
+                    <div class="form-group">
+                        <label for="edit_user_role">User role</label>
+                        <select type="text" required name="edit_user_role" id="edit_user_role">
+                      <option value="">Select role</option>
+                      <option selected value="STDU">Standard user</option>
+                      <option value="HOD">HOD/Supervisor</option>
+                      <option value="Admin">Administrator</option>
+                    </select>
+                        <span id="error_edit_user_role" class="text-danger"></span>
+                    </div>
+
+                    <div id="showStatus" style="display: block; border: 2px solid; border-radius: 4px;">
+                        <div class="form-check">
+                            <label class="radio-inline">
+                                <input type="radio" id="active" name="active" value="1"> Active
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="radio-inline">
+                                <input type="radio" id="unactive" name="active" value="0"> Inactive
+                            </label>
+                        </div>
+                        <span id="error_active" class="text-danger"></span>
+                        <span id="error_user_ID" class="text-danger"></span>
+                    </div>
+
+                    <!-- <label style="color:red;">Kindly communicate the password to the respected employee.</label> -->
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="createUser" class="btn btn-primary">Submit</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

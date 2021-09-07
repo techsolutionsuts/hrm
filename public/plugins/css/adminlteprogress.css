@@ -1,0 +1,90 @@
+/*!
+ *   AdminLTE v3.1.0-pre
+ *   Author: Colorlib
+ *   Website: AdminLTE.io <https://adminlte.io>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
+ */
+/*!
+ * Bootstrap v4.5.2 (https://getbootstrap.com/)
+ * Copyright 2011-2020 The Bootstrap Authors
+ * Copyright 2011-2020 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
+ .post {
+  border-bottom: 1px solid #adb5bd;
+  color: #666;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.post:last-of-type {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.post .user-block {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.post .row {
+  width: 100%;
+}
+.user-block {
+  float: left;
+}
+
+.user-block img {
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+
+.user-block .username,
+.user-block .description,
+.user-block .comment {
+  display: block;
+  margin-left: 50px;
+}
+
+.user-block .username {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: -1px;
+}
+
+.user-block .description {
+  color: #6c757d;
+  font-size: 13px;
+  margin-top: -3px;
+}
+
+.user-block.user-block-sm img {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+.user-block.user-block-sm .username,
+.user-block.user-block-sm .description,
+.user-block.user-block-sm .comment {
+  margin-left: 40px;
+}
+
+.user-block.user-block-sm .username {
+  font-size: 14px;
+}
+.img-circle {
+  border-radius: 50%;
+}
+
+.img-bordered-sm {
+  border: 2px solid #adb5bd;
+  padding: 2px;
+}

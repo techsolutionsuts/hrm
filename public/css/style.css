@@ -1,0 +1,28 @@
+#menu ul li a:hover {
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.bttn {
+	background-color: red;
+	color: black;
+	font-weight: bold;
+	border-radius: 5px;
+	/* border: 5px solid #0099CC; */
+}
+
+.hhover a:hover {
+	background-color: blanchedalmond;
+	color: black;
+	font-weight: bold;
+	border-radius: 5px;
+	/* cursor: pointer; */
+}
+
+@media only screen and (max-width: 768px) {
+	[class*="col-"] {
+		width: 100%;
+	}
+}

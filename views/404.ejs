@@ -1,0 +1,38 @@
+<%- include('./includes/header.ejs') %>
+    <%- include('./includes/navbar.ejs') %>
+        <style>
+            .hide {
+                display: none;
+            }
+        </style>
+
+        <!-- <%- include('./includes/loader.ejs') %> -->
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid mainPage">
+
+            <!-- <div class="hide">
+                    <%- include('./includes/loader.ejs') %>
+                </div> -->
+
+            <!-- Page Heading -->
+            <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            </div> -->
+            <!-- <div class="row"> -->
+
+
+            <div class="text-center" style="height: 530px;">
+                <div class="error mx-auto" data-text="404">404</div>
+                <p class="lead text-gray-800 mb-5">Page Not Found</p>
+                <p class="text-gray-500 mb-0">It looks like you are in a wrong place, which is your own doing...</p>
+                <a href="<%= path %>">&larr; Back to Dashboard</a>
+            </div>
+        </div>
+        <!-- </div> -->
+        <!-- Content Row -->
+        <%- include('./includes/scripts.ejs') %>
+            <%- include('./includes/footer.ejs') %>

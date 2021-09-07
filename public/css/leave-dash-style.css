@@ -1,0 +1,137 @@
+.thback {
+    backround-color: #D3D3D3;
+}
+
+.custStyleNav {
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid #778899;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #097586;
+}
+
+.custStyleNav ul {
+    padding: 5px;
+    /*margin: 5px;*/
+    /*border: 1px solid;*/
+    /*border-radius: 16px;*/
+}
+
+.custStyleNav ul button {
+    border-radius: 16px;
+    color: black;
+}
+
+.breadcrumb {
+    border-radius: 0px 0px 0px 0px;
+    margin: 0px;
+}
+
+.cbody {
+    margin-bottom: 0px;
+    border: 3px solid #696969;
+}
+
+.cd {
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.scroll-div {
+    overflow-y: scroll;
+    height: 200px;
+    width: 100%;
+}
+
+.padd {
+    padding-left: 5px;
+}
+
+
+/* Style the tab */
+
+.tabl {
+    overflow: hidden;
+    border: 2px solid #4682B4;
+    background-color: #008a9f;
+    border-radius: 0px;
+}
+
+
+/* Style the buttons inside the tab */
+
+.tabl button {
+    background-color: inherit;
+    float: left;
+    border: red;
+    outline: none;
+    cursor: pointer;
+    padding: 1px 5px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+
+/* Change background color of buttons on hover */
+
+.tabl button:hover {
+    background-color: #ddd;
+}
+
+
+/* Create an active/current tablink class */
+
+.tabl button.active {
+    background-color: #ccc;
+}
+
+
+/* Style the tab content */
+
+.tabcontentl {
+    display: none;
+    padding: 6px 12px;
+    border: 2px solid #4682B4;
+    border-top: none;
+}
+
+td a {
+    color: #739931;
+    cursor: pointer;
+}
+
+.page {
+    max-width: 60em;
+    margin: 0 auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 0.25rem;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+tbody tr:nth-child(odd) {
+    background: #eee;
+}
+
+tbody tr:hover {
+    background: #F8F8FF;
+}
+
+table.responsive-table {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.clickMe:hover {
+    cursor: pointer;
+    content: 'Click me';
+}

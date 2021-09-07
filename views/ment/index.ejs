@@ -1,0 +1,452 @@
+<%- include('../includes/header.ejs') %>
+    <%- include('../includes/navbar.ejs') %>
+        <style>
+            .hide {
+                display: none;
+            }
+            
+            .hr {
+                margin: 0px;
+            }
+            
+            .scroll-div {
+                overflow-y: scroll;
+                height: 60px;
+                width: 100%;
+            }
+            /* canvas {
+                border: 1px solid blue;
+            } */
+            
+            .chart-container {
+                position: relative;
+                width: inherit;
+                margin: auto;
+            }
+        </style>
+        <!-- <script src="/chartjs-3.3.2/dist/chart.min.js"></script> -->
+
+        <script type='text/javascript' src='/js/progress-bar.js'></script>
+        <link rel="stylesheet" type="text/css" href="/css/progress-bar.min.css">
+        <script type='text/javascript'>
+            //<![CDATA[ 
+            $(window).load(function() {
+                $('#test1 .bar[data-percentage]').each(function() {
+                    var $this = $(this);
+                    $this.animate({
+                        width: $this.data('percentage')
+                    }, {
+                        duration: 1000,
+                        step: function(value) {
+                            $(this).text(value + '% Present');
+                        }
+                    });
+                });
+            }); //]]>
+        </script>
+
+        <%- include('../includes/loader.ejs') %>
+            
+            <!-- Begin Page Content -->
+            <div class="container-fluid mainPage" style="cursor:not-allowe;">
+                <!-- <div class="" id="mainPag" style="display: none;">     
+                    <div class="" id="test-git">
+                        <img alt="Loading ........" id="" src="/img/loader2.gif"/>
+                    </div>
+                </div>   -->
+                <div class="hide">
+                    <%- include('../includes/loader.ejs') %>
+                </div>
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800"> <i class="fa fa-chart-line fa-1x text-black-300"></i> Dashboard</h1>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary reportManager shadow-sm"><i
+        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> <i class="fas fa-users fa-1x text-gray-300"></i> Employees
+                                            <hr>
+                                        </div>
+
+                                        <div class="h5 mb-0 font-weight-bold text-black-800">
+
+                                            <h6 style="border: olive; color: black;"><i class="fas fa-users fa-1x text-black-300"></i> Total Employees:
+                                                <%= dashBoardEmployee[0] %>
+                                            </h6>
+                                            <!-- <hr class="hr"> -->
+                                            <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">Males: <%= dashBoardEmployee[1] %></span>
+                                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Females: <%= dashBoardEmployee[2] %></span> -->
+                                            <hr class="hr">
+                                            <span class="mr-2 d-none d-lg-inline text-black-800 small" style="color: black;"><i class="fas fa-vote-yea fa-1x text-black-300"></i> Average Age: <%= dashBoardEmployee[3] %> years</span>
+                                            <hr class="h">
+
+                                            <% if (dashBoardEmployee[11].length > 0) { %>
+                                                <label style="color: #00008B; font-size: 14px;">Recently Employed</label>
+                                                <hr class="hr">
+                                                <div class="scroll-div">
+                                                    <% for (let recentEmpl of dashBoardEmployee[11]) { %>
+
+                                                        <li style="color: #000000; font-size: 13px; list-style: square;">
+                                                            <%= recentEmpl  %>
+                                                        </li>
+
+                                                        <% } %>
+                                                </div>
+                                                <% } else { %>
+                                                    <!-- <h6>All leave exhuasted!</h6> -->
+                                                    <% } %>
+                                                        <hr class="hr">
+
+                                                        <div class="chart-container">
+                                                            <canvas id="genderChart" width="330" height="300"></canvas>
+                                                        </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            <span style="font-size: 13px;"><i class="fas fa-clock fa-1x text-gray-300"></i> Employees Attendance</span>
+                                            <hr class="hr">
+                                        </div>
+                                        <center><span style="color: black; text-decoration: underline;">Daily Statistics</span></center>
+                                        <!-- <i class="fas fa-clock-o fa-1x"></i> -->
+                                        <i class="fas fa-clock fa-1x text-black-300" style="color: black;">
+                                        <script>
+                                            document.write(new Date().toDateString())
+                                        </script>
+                                        </i><br>
+                                        <i class="fas fa-thumbs-up fa-1x text-black-300">
+                                        <label style="color: black;">Present: <%= dashBoardEmployee[5] %> <i class="fas fa-thumbs-down fa-1x text-black-300"></i> Absent:
+                                        <%= dashBoardEmployee[6] %>
+                                            </label>
+                                            </i><br>
+                                            <!-- <hr class="hr"> -->
+                                            <i class="fas fa-user-clock fa-1x text-black-300"> <label data-toggle="tooltip" data-placement="top" title="The last person and datetime to report to work or Today's event if it's a holiday or weekend" style="color: black;"> <%= dashBoardEmployee[10] %></label></i>
+                                            <hr class="hr">
+                                            <hr class="hr">
+                                            <hr class="hr">
+                                            <hr class="hr">
+                                            <hr class="hr">
+                                            <center><span style="color: black; text-decoration: underline;"><%= dashBoardEmployee[4] %> Statistics</span></center>
+
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col">
+                                                    <label class="progress" id="test1">
+                                                    <div data-toggle="tooltip" data-placement="top" title="Percentage of days punched in this month" class="bar bar-info" data-percentage="<%= dashBoardEmployee[8] %>%"></div>
+                                                    <!-- <div class="bar bar-danger" data-percentage="%"></div> -->
+                                                </label>
+                                                    <hr class="hr">
+                                                </div>
+                                            </div>
+
+                                            <hr class="hr">
+
+                                            <label data-toggle="tooltip" data-placement="top" title="<%= dashBoardEmployee[7] %> day(s) punch out of <%= dashBoardEmployee[9] %> working days" style="color: #8B008B;"><i class="fas fa-user-check fa-1x text-black-300">  <%= dashBoardEmployee[7] %> / <%= dashBoardEmployee[9] %> Days punched</i></label><br>
+                                            <label data-toggle="tooltip" data-placement="top" title="<%= dashBoardEmployee[16] %> day(s) gone out of <%= dashBoardEmployee[9] %> working days" style="color: #8B008B;"><i class="fas fa-person-booth fa-1x text-black-300">  <%= dashBoardEmployee[16] %> / <%= dashBoardEmployee[9] %> Days worked </i></label>
+                                            <hr class="hr">
+
+                                            <div class="chart-container">
+                                                <canvas id="attendChart" width="330" height="300"></canvas>
+                                            </div>
+
+                                    </div>
+                                    <!-- <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><i class="fas fa-calendar fa-1x text-gray-300"></i> Employees Leaves</div>
+                                        <hr class="hr">
+
+                                        <label style="color: #00008B; font-size: 13px;">Employees on leave:</label>
+                                        <hr class="hr">
+
+                                        <% if (dashBoardEmployee[12].length > 0) { %>
+                                            <div class="scroll-div">
+                                                <% for (let emplyOnLeve of dashBoardEmployee[12]) { %>
+
+
+                                                    <li class="tablinksl" value="Leave" style="color: #000000; font-size: 13px; list-style: square; cursor: pointer;">
+                                                        <%= emplyOnLeve  %>
+                                                    </li>
+                                                    <!-- <hr class="hr"> -->
+
+                                                    <% } %>
+                                            </div>
+
+                                            <% } else { %>
+                                                <h6>No one on leave</h6>
+                                                <% } %>
+                                                    <hr class="hr">
+                                                    <label style="color: #6495ED; font-size: 13px;">Pending leaves:</label>
+                                                    <hr class="hr">
+                                                    <% if (dashBoardEmployee[13].length > 0) { %>
+                                                        <div class="scroll-div">
+
+                                                            <% for (let pending of dashBoardEmployee[13]) { %>
+
+                                                                <li class="leaveDash" style="color: #000000; font-size: 13px; list-style: square; cursor: pointer;">
+                                                                    <%= pending  %>
+                                                                </li>
+
+                                                                <% } %>
+                                                        </div>
+
+                                                        <% } else { %>
+                                                            <h6>No pending leave</h6>
+                                                            <% } %>
+                                                                <hr class="hr">
+                                                                <div class="chart-container">
+                                                                    <canvas id="leaveChart" width="330" height="300"></canvas>
+                                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1"> <i class="fas fa-building fa-1x text-gray-300"></i> Company</div>
+                                        <hr>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <h6 style="border: olive;"><i class="fas fa-group fa-1x text-black-300"></i>Total Department:
+                                                <%= dashBoardEmployee[15] %>
+                                            </h6>
+                                            <hr class="hr">
+
+                                            <label style="color: #00008B; font-size: 13px;">List of Departments and Heads:</label>
+                                            <hr class="hr">
+
+                                            <% if (dashBoardEmployee[14].length > 0) { %>
+                                                <div class="scroll-div" style="height: 100px;">
+                                                    <% for (let deptWHead of dashBoardEmployee[14]) { %>
+
+                                                        <li class="getDept" style="color: #000000; font-size: 13px; list-style: square; cursor: pointer;">
+                                                            <%= deptWHead  %>
+                                                        </li>
+                                                        <% } %>
+                                                </div>
+                                                <% } else { %>
+                                                    <h6>No departments</h6>
+                                                    <% } %>
+                                                        <hr class="hr"><br>
+                                                        <span style="color: red; font-size: 12px;" id="charterror"></span>
+                                                        <div class="chart-container">
+                                                            <canvas id="compChart" width="330" height="300"></canvas>
+                                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-chart-line fa-1x text-black-300"></i> Personal Dashboard</h1>
+                    <a href="#" class="d-none d-sm-inline-block shadow-sm"></a>
+                </div>
+                <!-- Content Row -->
+                <div class="row">
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            <span style="font-size: 13px;"><i class="fas fa-clock fa-1x text-gray-300"></i> Attendance Manager</span>
+                                            <hr class="hr">
+                                        </div>
+                                        <center><span style="color: black; text-decoration: underline;">Daily Statistics</span></center>
+                                        <!-- <i class="fas fa-clock-o fa-1x"></i> -->
+                                        <i class="fas fa-clock fa-1x text-black-300" style="color: black;">
+                                        <script>
+                                            document.write(new Date().toDateString())
+                                        </script>
+                                        </i><br>
+                                        <i class="fas fa-fingerprint fa-1x text-black-300">
+                                        <label style="color: black;">Present: <%= dashBoardUser[1] %>
+                                            </label>
+                                            </i><br>
+                                        <!-- <hr class="hr"> -->
+                                        <i class="fas fa-user-clock fa-1x text-black-300"> <label data-toggle="tooltip" data-placement="top" title="The last time you report to work or Today's event if it's a holiday or weekend" style="color: black;"> <%= dashBoardUser[11] %></label></i>
+                                        <hr class="hr">
+                                        <hr class="hr">
+                                        <hr class="hr">
+                                        <hr class="hr">
+                                        <hr class="hr">
+                                        <center><span style="color: black; text-decoration: underline;"><%= dashBoardUser[0] %> Statistics</span></center>
+
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col">
+                                                <label class="progress" id="test1">
+                                                    <div data-toggle="tooltip" data-placement="top" title="Percentage of days punched in this month" class="bar bar-info" data-percentage="<%= dashBoardUser[4] %>%"></div>
+                                                    <!-- <div class="bar bar-danger" data-percentage="%"></div> -->
+                                                </label>
+                                                <hr class="hr">
+                                            </div>
+                                        </div>
+
+                                        <hr class="hr">
+
+                                        <label data-toggle="tooltip" data-placement="top" title="<%= dashBoardUser[3] %> day(s) punch out of <%= dashBoardUser[15] %> working days" style="color: #8B008B;"><i class="fas fa-user-check fa-1x text-black-300">  <%= dashBoardUser[3] %> / <%= dashBoardUser[15] %> Days punched</i></label><br>
+                                        <label data-toggle="tooltip" data-placement="top" title="<%= dashBoardUser[5] %> day(s) gone out of <%= dashBoardUser[15] %> working days" style="color: #8B008B;"><i class="fas fa-person-booth fa-1x text-black-300">  <%= dashBoardUser[5] %> / <%= dashBoardUser[15] %> Days worked </i></label>
+                                        <hr class="hr">
+
+                                        <div class="chart-container">
+                                            <canvas id="userAttendChart" width="330" height="300"></canvas>
+                                        </div>
+
+                                    </div>
+                                    <!-- <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            <span style="font-size: 13px;"><i class="fas fa-calendar fa-1x text-gray-300"></i> Leaves Manager</span>
+                                            <hr>
+                                        </div>
+                                        <label>Leave Status:
+                                            <% if(dashBoardUser[6]) { %> Yes
+                                                <% } else {%> No
+                                                    <%} %> </label>
+                                        <hr class="hr">
+
+                                        <label>Last leave:
+                                            <%= dashBoardUser[9] %> </label>
+                                        <hr class="hr">
+
+                                        <label>Last leave date:
+                                        <%= dashBoardUser[7] %>
+                                        </label>
+                                        <hr class="hr">
+                                        <label>Annual leave days left:
+                                        <%= dashBoardUser[8] %></label>
+                                        <hr class="hr">
+                                        <label style="color: darkcyan;">Unused Leave:</label>
+                                        <div class="scroll-div">
+                                            <% if (dashBoardUser[10].length > 0) { %>
+                                                <% for (let leave of dashBoardUser[10]) { %>
+
+                                                    <li style="color: brown; list-style: square;">
+                                                        <%= leave  %>
+                                                    </li>
+                                                    <% } %>
+                                                        <% } else { %>
+                                                            <h6>All leave exhuasted!</h6>
+                                                            <% } %>
+                                        </div>
+                                        <hr class="hr">
+
+                                    </div>
+                                    <!-- <div class="col-auto">
+                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <span style="font-size: 13px;"><i class="fas fa-building fa-1x text-gray-300"></i> Holiday/Birthday </span>
+                                            <hr>
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                        <h6 class="calendManager" style="border: olive; color: black; text-decoration: underline; cursor: pointer;"><i class="fa fa-calendar-day"></i> Upcoming Holidays</h6>
+                                        <hr>
+                                        <div class="scroll-div">
+                                            <% if (dashBoardUser[16].length > 0) { %>
+                                                <% for (let holiday of dashBoardUser[16]) { %>
+
+                                                    <h6><%= holiday  %></h6>
+                                                    <hr class="hr">
+                                                    
+                                                    <% } %>
+                                                        <% } else { %>
+                                                            <h6>No holiday left for this month</h6>
+                                                            <% } %>
+                                        </div>
+
+                                        <h6 class="calendManager" style="border: olive; color: crimson; text-decoration: underline; cursor: pointer;"><i class="fa fa-birthday-cake"></i> Upcoming Birthdays</h6>
+                                        <hr>
+                                        <div class="scroll-div">
+                                            <% if (dashBoardUser[17].length > 0) { %>
+                                                <% for (let bithday of dashBoardUser[17]) { %>
+
+                                                    <h6><%= bithday  %></h6>
+                                                    <hr class="hr">
+                                                    
+                                                    <% } %>
+                                                        <% } else { %>
+                                                            <h6>No bithday left for this month</h6>
+                                                            <% } %>
+                                        </div>
+                                        
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-auto">
+              <i class="fas fa-building fa-2x text-gray-300"></i>
+            </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Row -->
+            <%- include('../includes/scripts.ejs') %>
+                <%- include('../includes/footer.ejs') %>

@@ -1,0 +1,33 @@
+.form-group {
+    margin: 1rem 0;
+}
+
+.form-group label,
+.form-group input,
+.form-group textarea,
+.form-group select {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.25rem;
+    color: black;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    border: 1px solid #a1a1a1;
+    font: inherit;
+    border-radius: 4px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline-color: #00695c;
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid,
+.form-group select.invalid {
+    border-color: red;
+}

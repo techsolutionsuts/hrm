@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= pageTitle %>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/login-style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/vendor/fontawesome-free/css/all.min.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <!-- <script src="/vendor/fontawesome-free/js/a81368914c.js"></script> -->
+    <script src="/vendor/fontawesome-free/js/all.min.js"></script>
+    <link rel="icon" type="image/jpg" href="/img/ac1.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <img class="wave" src="/img/wave.png">
+    <div class="container">
+        <div class="img">
+            <img src="/img/bg.svg">
+            <!-- bg.svg-->
+        </div>
+        <div class="login-content">
+
+            <form action="login" method="POST">
+
+                <img src="/img/log.png">
+                <!-- <h2 class="title">Staidorf HRM</h2> -->
+                <img class="img" src="/img/hrmlogo.png">
+                <% if (errorMessage) { %>
+                    <br>
+                    <div class="user-message user-message--error">
+                        <%= errorMessage %>
+                    </div>
+                    <% } %>
+                        <br>
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Username/Email</h5>
+                                <input required type="email" class="<%= validationErrors.find(e => e.param == 'email') ? 'invalid' : '' %> input" type="email" name="email" value="<%= oldInput.email %>">
+                            </div>
+                        </div>
+                        <div class="input-div pass">
+                            <div class="i">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Password</h5>
+                                <input required type="password" name="password" class="<%= validationErrors.find(e => e.param == 'password') ? 'invalid' : '' %> input" value="<%= oldInput.password %>">
+                            </div>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                        </div>
+                        <a href="/requestPassResetForm" style="color: red;">Forgot Password?</a>
+                        <input type="submit" class="btn" value="Login">
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/login-main.js"></script>
+</body>
+
+</html>

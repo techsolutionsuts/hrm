@@ -1,0 +1,505 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/css/employee-style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+
+    <%- include('../includes/navbar.ejs') %>
+
+        <style>
+            .box {
+                width: 100%;
+                padding: 0px;
+                margin-bottom: 30px;
+                margin: 0 auto;
+            }
+            /* .container {
+    border: 2px solid teal;
+  } */
+            
+            .active_tab1 {
+                background-color: #fff;
+                color: #333;
+                font-weight: 600;
+            }
+            
+            .inactive_tab1 {
+                background-color: #f5f5f5;
+                color: #333;
+                cursor: not-allowed;
+            }
+            
+            .has-error {
+                border-color: #cc0000;
+                background-color: #ffff99;
+            }
+        </style>
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid mainPage">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                <h6 class="h3 mb-0 text-gray-800">Add New Employee</h6>
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm getAllEmploy"><i
+        class="fas fa-list"></i> View Employees Info</a>
+            </div>
+            <hr>
+
+            <!-- Content Row -->
+            <div class="container box">
+                <form action="" method="POST" enctype="multipart/form-data" id="employ_form">
+                    <ul class="nav nav-tabs tabb">
+                        <li class="nav-item">
+                            <a class="nav-link active_tab1" style="border:2px solid #ccc;" id="list_basic_info">Basic Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab1" id="list_address_ids" style="border:2px solid #ccc">Address & IDs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab1" id="list_emplmnt_work_edu" style="border:2px solid #ccc">Employment &
+            Edu.</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab1" id="list_bank_details" style="border:2px solid #ccc">Bank Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab1" id="list_spouse_nofk" style="border:2px solid #ccc">Spouse & Next of Kin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab1" id="list_depend_ssnit_benefit" style="border:2px solid #ccc">Depend & SSNIT
+            Benf</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" style="margin-top:16px; ">
+                        <div class="tab-pane active" id="basic_info">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="font-size: 20px;">Employee Basic Information</div>
+                                <div class="panel-body">
+
+                                    <div class="row" style="background-color:white;">
+                                        <div class=" col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="title">Title (Select title)</label>
+                                                <select name="title" id="title">
+                      <option value='Mr'>Mr</option>"
+                      <option value='Miss'>Miss</option>"
+                      <option value='Mrs'>Mrs</option>"
+                      <option value='Dr'>Dr</option>"
+                    </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="fName">First Name</label>
+                                                <input type="text" name="fName" id="fName" placeholder="First Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="mName">Middle Name</label>
+                                                <input type="text" name="mName" id="mName" placeholder="Middle Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="lName">Last Name</label>
+                                                <input type="text" name="lName" id="lName" placeholder="Last Name">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="gender">Gender</label>
+                                                <select name="gender" id="gender">
+                      <option value='Male'>Male</option>
+                      <option value='Female'>Female</option>
+                    </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="bdate">Birth Date</label>
+                                                <input type="date" name="bdate" id="bdate">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="mStatus">Marriage Status</label>
+                                                <select name="mStatus" id="mStatus">
+                      <option value='Single'>Single</option>
+                      <option value='Married'>Married</option>
+                      <option value='Divorce'>Divorce</option>
+                    </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="image">Photo</label>
+                                                <input type="file" name="image" id="image">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="phone">Phone</label>
+                                                <input type="text" name="phone" id="phone" placeholder="Phone Number">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" id="email" placeholder="Email">
+                                            </div>
+
+                                            <div align="center">
+                                                <button type="button" name="btn_basic_info" id="btn_basic_info" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Address and ID cards -->
+                        <div class="tab-pane" id="address_ids">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="font-size: 20px; ">Employee Address & IDs Number (GH card, TIN, SSNIT)
+                                </div>
+                                <div class="panel-body">
+
+                                    <div class="row" style="background-color:white;">
+                                        <div class=" col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="residAddress">Residential Address</label>
+                                                <textarea type="text" name="residAddress" id="residAddress" rows="1"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="postAddress">Postal Address</label>
+                                                <textarea type="text" name="postAddress" id="postAddress" rows="1"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="town">City/Town</label>
+                                                <input type="text" name="town" id="town" placeholder="Enter city or town of residence">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Region of Residence</label>
+                                                <select type="text" name="region" id="region">
+                      <option value="">Select region of residence</option>
+                      <option value="Greater Accra Region">Greater Accra Region</option>
+                      <option value="Bono Region">Bono Region</option>
+                      <option value="Ashanti Region">Ashanti Region</option>
+                      <option value="Central Region">Central Region</option>
+                      <option value="Eastern Region">Eastern Region</option>
+                      <option value="Western Region">Western Region</option>
+                      <option value="Northern Region">Northern Region</option>
+                      <option value="Upper East Region">Upper East Region</option>
+                      <option value="Upper West Region">Upper West Region</option>
+                      <option value="Volta Region">Volta Region</option>
+                      <option value="North East Region">North East Region</option>
+                      <option value="Savannah Region">Savannah Region</option>
+                      <option value="Bono East Region">Bono East Region</option>
+                      <option value="Ahafo Region">Ahafo Region</option>
+                      <option value="Western North Region">Western North Region</option>
+                      <option value="Oti Region">Oti Region</option>
+                    </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="gpCode">GP Code</label>
+                                                <input type="text" name="gpCode" id="gpCode" placeholder="Enter GP code of employee residence">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="ghCard">Ghana Card</label>
+                                                <input type="text" name="ghCard" id="ghCard" placeholder="Enter national ID number employee">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tin">Photo</label>
+                                                <input type="text" name="tin" id="tin" placeholder="Enter employee TIN">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="ssnitNo">SSNIT No.</label>
+                                                <input type="text" name="ssnitNo" id="ssnitNo" placeholder="Enter employee SSNIT Number">
+                                            </div>
+
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_address_ids" id="previous_btn_address_ids" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_address_ids" id="btn_address_ids" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Employment Work and Edu. -->
+                        <div class="tab-pane fade" id="emplmnt_work_edu">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="font-size: 20px; ">Employment, Work & Educational Background
+                                </div>
+                                <div class="panel-body">
+
+                                    <div class="row" style="background-color:white;">
+                                        <div class=" col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="dateEmplyed">Date Employed</label>
+                                                <input type="date" name="dateEmplyed" id="dateEmplyed">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="staffID">Staff ID</label>
+                                                <input type="text" name="staffID" id="staffID" placeholder="Enter staff ID for employee">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="jobTitle">Job Title</label>
+                                                <select type="number" name="jobTitle" id="jobTitle">
+                      <option value="">Select job title for employee</option>
+
+                    </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="jobDesc">Job Description</label>
+                                                <select type="number" name="jobjobDescTitle" id="jobDesc">
+                      <option value="">Select job description for employee</option>
+                    </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="eduBackg">Educational Background</label>
+                                                <textarea type="text" name="eduBackg" id="eduBackg" rows="4" placeholder="Provide 300 maximum characters for employee educational backgroud in a proper order"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="dept">Department</label>
+                                                <select type="number" name="dept" id="dept">
+                      <option value="">Select department for employee</option>
+                    </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="repotto">Report To?</label>
+                                                <select type="number" name="repotto" id="repotto">
+                      <option value="">Employee reports to?</option>
+                    </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="direpotto">Direct Report To?</label>
+                                                <select type="number" name="direpotto" id="direpotto">
+                      <option value="">Employee direct reports to?</option>
+                    </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="empGroup">Group</label>
+                                                <select type="number" name="empGroup" id="empGroup">
+                      <option value="">Select group for employee</option>
+                    </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="workExp">Work Experience</label>
+                                                <textarea type="text" name="workExp" id="workExp" rows="4" placeholder="Provide 300 maximum characters for employee working experiences in a proper order"></textarea>
+                                            </div>
+
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_emplmnt_work_edu" id="previous_btn_emplmnt_work_edu" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_emplmnt_work_edu" id="btn_emplmnt_work_edu" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bank details  -->
+                        <div class="tab-pane fade" id="bank_details">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="font-size: 20px;">Employee Bank Details</div>
+                                <div class="panel-body">
+
+                                    <div class="row" style="background-color:white;">
+                                        <div class=" col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="bankName">Bank Name</label>
+                                                <select name="bankName" id="bankName">
+
+                    </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="branch">Branch</label>
+                                                <input type="text" name="branch" id="branch" placeholder="Branch">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="accNum">Account No.</label>
+                                                <input type="number" name="accNum" id="accNum">
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <button type="button" style="float: right;" class="btn btn-primary" id="addBank">Add More</button>
+                                            </div>
+                                            <br>
+                                            <br>
+
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_bank_details" id="previous_btn_bank_details" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_bank_details" id="btn_bank_details" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Spouse and Next of Kin -->
+                        <div class="tab-pane fade" id="spouse_nofk">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="font-size: 20px;">Spouse & Next of Kin</div>
+                                <div class="panel-body">
+
+                                    <div class="row" style="background-color:white;">
+                                        <div class=" col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="spName">Spouse Name</label>
+                                                <input type="text" name="spName" id="spName" placeholder="Enter spouse name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="spGhCard">Ghana Card</label>
+                                                <input type="text" name="spGhCard" id="spGhCard" placeholder="Ghana card">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="spphone">Phone</label>
+                                                <input type="text" name="spphone" id="spphone" placeholder="Phone Number">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="spDOB">Birth Date.</label>
+                                                <input type="date" name="spDOB" id="spDOB">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="spImage">Photo</label>
+                                                <input type="file" name="spImage" id="spImage">
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <button type="button" style="float: right;" class="btn btn-primary" id="addSpouse">Add More</button>
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <hr style="background-color: indianred;">
+                                    <h5>Next of Kin Details</h5>
+
+                                    <div class="row" style="background-color:white;">
+                                        <div class=" col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="nOKName">Name</label>
+                                                <input type="text" name="nOKName" id="nOKName" placeholder="Enter next of kin name">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="nOkPhone">Phone.</label>
+                                                <input type="number" name="nOkPhone" id="nOkPhone" placeholder="Enter phone">
+                                            </div>
+
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_spouse_nofk" id="previous_btn_spouse_nofk" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_spouse_nofk" id="btn_spouse_nofk" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dependance and SSNIT Benefits -->
+                        <div class="tab-pane fade" id="depend_ssnit_benefit">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="font-size: 20px;">Dependant & SSNIT Beneficiaries</div>
+                                <div class="panel-body">
+
+                                    <div class="row" style="background-color:white;">
+                                        <div class=" col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="depdName">Name</label>
+                                                <input type="text" name="depdName" id="depdName" placeholder="Enter dependant name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="depdGender">Gender</label>
+                                                <select name="depdGender" id="depdGender">
+                      <option value='Male'>Male</option>
+                      <option value='Female'>Female</option>
+                    </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="depdDOB">Birth Date.</label>
+                                                <input type="date" name="depdDOB" id="depdDOB">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="depdRelation">Relation</label>
+                                                <select name="depdRelation" id="depdRelation">
+                      <option value='Child'>Child</option>
+                      <option value='Nephew'>Nephew</option>
+                      <option value='Niece'>Niece</option>
+                    </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="button" style="float: right;" class="btn btn-primary" id="addDend">Add More</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <hr style="background-color: indianred;">
+                                    <h5>SNNIT Beneficiary</h5>
+
+                                    <div class="row" style="background-color:white;">
+                                        <div class=" col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="benfName">Name</label>
+                                                <input type="text" name="benfName" id="benfName" placeholder="Enter name">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="percent">Phone.</label>
+                                                <input type="text" name="percent" id="percent" placeholder="Enter percentage">
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="button" style="float: right;" class="btn btn-primary" id="addSBenf">Add More</button>
+                                            </div>
+                                            <br>
+                                            <br>
+
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_depend_ssnit_benefit" id="previous_btn_depend_ssnit_benefit" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_depend_ssnit_benefit" id="btn_depend_ssnit_benefit" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </form>
+        </div>
+
+        <script src="/js/custom/emply-form.js"></script>
+
+        <!-- Content Row -->
+        <%- include('../includes/scripts.ejs') %>
+            <%- include('../includes/footer.ejs') %>

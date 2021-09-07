@@ -1,0 +1,67 @@
+<%- include('./includes/header.ejs') %>
+    <%- include('./includes/navbar.ejs') %>
+        <style>
+            .hide {
+                display: none;
+            }
+        </style>
+
+        <!-- <%- include('./includes/loader.ejs') %> -->
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid mainPage">
+
+            <link href="/css/employee-style.css" rel="stylesheet">
+
+            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+            <div class="d-sm-flex align-items-center justify-content-between mb-2">
+
+                <h6 class="h3 mb-0 text-gray-800">System Error</h6>
+
+                <a href="<%= path %>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm >"><i
+    
+    class = "fas fa-plus fa-sm text-white-50"> </i> Reload Page</a>
+
+            </div>
+
+
+            <div class="container" style="padding: 0px;">
+
+
+                <!-- < div class = "tab-content" style = "margin-top:16px; "> -->
+                <div class="tab-pane active" id="basic_info">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading" style="font-size: 20px;">System Error occured</div>
+
+                        <div class="panel-body">
+
+                            <p style="color: red;">
+                                <%= errMsg %>
+                            </p>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- <div class="text-center" style="height: 530px;">
+                <div class="error mx-auto" data-text="404">404</div>
+                <p class="lead text-gray-800 mb-5">Page Not Found</p>
+                <p class="text-gray-500 mb-0">It looks like you are in a wrong place, which is your own doing...</p>
+                <a href="<%= path %>">&larr; Back to Dashboard</a>
+            </div> -->
+        </div>
+        <!-- </div> -->
+        <!-- Content Row -->
+        <%- include('./includes/scripts.ejs') %>
+            <%- include('./includes/footer.ejs') %>

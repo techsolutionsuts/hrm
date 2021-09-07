@@ -1,0 +1,1334 @@
+<style>
+    .scroll-div {
+        overflow-y: scroll;
+        height: 600px;
+        width: 100%;
+    }
+</style>
+<!-- Show Company Features -->
+<div class="modal fade" id="companyFeat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <h4 style="color: blueviolet; ">Company</h4>
+                    <hr style="margin: 0px;">
+                    <ul>
+                        <li><a href="#"><span class="title getAllComp">View Company Info</span></li>
+            <li><a href="#" data-toggle="modal" data-target="#addCompany"><span class="title">Add Company</span></li>
+            <li><a href="#"><span class="title getAllComp">Edit Information</span></li>
+            <li><a href="#"><span class="title getDept">View Department</span></li>
+            <li><a href="#"><span class="title">Add Department</span></li>
+            <li><a href="#"><span class="title">View Group</span></li>
+            <li><a href="#"><span class="title">Create Group</span></li>
+
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Show Employee Features -->
+<div class="modal fade" id="employeeFeat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h4 style="color: blueviolet; color: darkseagreen;">Employee Information</h4>
+          <hr style="margin: 0px;">
+          <ul>
+            <li><a href="#"><span class="title employeeDash">Employee Info</span></li>
+            <li><a class="add-employee-form" href="#"><span class="title">Add Employee Info</span>
+            </li>
+            <li><a href="#"><span class="title jobTitleDecs">Job Title, Description and Responsibilities</span></li>
+            <li><a href="#"><span class="title getDept">Departments</span></li>
+            <li><a href="#"><span class="title salaryDash">Salary Structure</span></li>
+            <!-- <li><a href="#"><span class="title">Educational Background</span></li> -->
+            <!-- <li><a href="#"><span class="title">Bank Details</span></li> -->
+            <!-- <li><a href="#"><span class="title">Create Group</span></li> -->
+
+          </ul>
+        </div>
+        <div class="modal-footer" style="padding: 0px;">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Details of job title modal -->
+<div class="modal fade" id="jobTitleDec" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Job Title and Description</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal-body">
+
+        <div class="list-group appendInfo">
+
+
+        </div>
+        <br>
+      </div>
+      <div class="modal-footer" style="padding: 0px;">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Department -->
+<div class="modal fade" id="departmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #4682B4;">
+                <h4 class="modal-title dept-title" id="exampleModalLabel"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="tab-pane active" id="basic_info">
+    <div class="panel panel-default">
+    <div class="panel-heading" style="font-size: 15px;">Department manager</div>
+    <div class="panel-body">
+
+    <form action="add-department" method="POST" id="addDept">
+    <div style="width: inherit;" class="user-message user-message--error" style="display: none;"></div>
+    <div class="row" style="background-color:white;">
+    <div class=" col-lg-12 col-md-12">
+    <div class="form-group">
+    <label for="deptName">Department Name</label>
+    <input required type="text" name="deptName" id="deptName" placeholder="Enter name">
+    <span id="error_deptName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label for="deptDesc">Description</label>
+    <textarea required type="text" name="deptDesc" id="deptDesc" placeholder="Enter description"></textarea>
+    <span id="error_deptDesc" class="text-danger"></span>
+    </div>
+    </div>
+    <!-- <div class="col-lg-6 col-md-6">
+    <div class="form-group">
+    <label for="deptHead">Dept Head</label>
+    <select name="deptHead" id="deptHead">
+    <option value="">Select Detp head</option>
+    </select>
+        <span id="error_deptHead" class="text-danger"></span>
+
+    </div> -->
+    <br><br><br>
+
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="deptId" id="deptId" value="">
+    <input type="hidden" name="editMode" id="editMode" value="addMode">
+
+    
+    <!-- </div> -->
+    </div>
+    <div align="center">
+    <button type="submit" name="addDept" id="adDept"
+    class = "btn btn-primary">Save </button> 
+    <button type="button" name="cls" id="cls"
+    class = "btn btn-danger"> Reset </button> </div>
+    </form>
+    </div>
+    </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Readme on dept head position-->
+<div class="modal fade" id="readmeDeptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #008a9f;">
+                <h4 class="modal-title deptposi-title" id="exampleModalLabel"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+                        <div class="modal-body">
+<h4>Guide for updating a head of department</h4><hr>
+
+<h6 style="color: lightcoral;">Current/Outgoing Head of Department</h6>
+    
+    <li style="color: #000000; list-style: square;">
+    Select status which could be promotion, transfer, terminated or others but include a remark for the others options and enter a date of this appointment as it appears on appointment letter.
+    </li><br>
+
+    <li style="color: #000000; list-style: square;">
+    Provide any remarks for this appointment
+    </li><br>
+
+    <li style="color: #000000; list-style: square;">
+    Attach any supporting document for this appointment and when done please submit this form for the system to capture this changes
+    </li><br>
+
+    <h6 style="color: lightcoral;">New Head of Department</h6>
+    <li style="color: #000000;list-style: square;">
+    Please select the person whom is to occupied this position.
+    </li><br>
+
+    <li style="color: #000000; list-style: square;">
+    Select status which could be permanent or interim and enter a date of this appointment as it appears on appointment letter.
+    </li><br>
+
+    <li style="color: #000000; list-style: square;">
+    Provide any remarks for this appointment
+    </li><br>
+
+    <li style="color: #000000; list-style: square;">
+    Attach any supporting document for this appointment and when done please submit this form for the system to capture this changes
+    </li>
+    </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Job description -->
+<div class="modal fade" id="jobDescModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #4682B4;">
+                <h4 class="modal-title job-title" id="exampleModalLabel"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+
+          <div class="tab-pane active" id="basic_info">
+            <div class="panel panel-default">
+            <div class="panel-heading" style="font-size: 15px;">Job Description</div>
+            <div class="panel-body">
+
+            <form action="add-jobTitle" method="POST" id="addJobDec">
+            <div style="width: inherit;" class="user-message user-message--error" style="display: none;"></div>
+            <div class="row" style="background-color:white;">
+            <div class=" col-lg-12 col-md-12">
+            <div class="form-group">
+            <label for="jobPosition">Job Title/Position</label>
+            <input type="text" required name="jobPosition" id="jobPosition" placeholder="Enter job title / position">
+            </div>
+            <div class="form-group">
+            <label for="keyRespn" style="font-size: 15px;">Key Duties & Responsibilities</label>
+            <textarea required type="text" class="charSiz" name="keyRespn" id="keyRespn" rows="5" placeholder="Provide key responsibilities and duties"></textarea>
+            <!-- <div class="char-left" id="keyRespnCha">300 characters remaining</div> -->
+            </div>
+            <!-- </div>
+            <div class="col-lg-6 col-md-6"> -->
+            <div class="form-group">
+            <label for="jobSummary">Job summary/purpose</label>
+            <textarea required type="text" class="charSiz" name="jobSummary" id="jobSummary" rows="3" placeholder="Provide job summary/purpose"></textarea>
+            <!-- <div class="char-left" id="jobSummaryCha">300 characters remaining</div>` -->
+            </div>
+            <div class="form-group">
+            <label for="jobDesc">Competencies</label>
+            <textarea required type="text" class="charSiz" name="jobDesc" id="jobDesc" rows="3" placeholder="Provide competencies"></textarea>
+            <div class="char-left" id="jobDescCha">300 characters remaining</div>`
+            </div>
+
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" name="jobdescId" id="jobdescId" value="">
+            <input type="hidden" name="jobEditMode" id="jobEditMode" value="addMode">
+
+            <div align="center">
+            <button type="submit" name="addJobDesc" id="addJobDesc"
+            class = "btn btn-primary">Save </button> 
+            <button type="button" name="jobcls" id="jobcls"
+            class = "btn btn-danger"> Reset </button> </div>
+            </div>
+            </div>
+            </form>
+            </div>
+            </div>
+          </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Show add salary structure -->
+<div class="modal fade" id="addSalary" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="user-message user-message--error" style="display: none;"></div>
+        <form action="add-salaryStructure" id="createSalary" class="update-salaryStruct" method="POST" enctype="multipart/form-data">
+
+        <!-- <div class="form-group">
+            <label for="job"> Job Description </label>
+            <select required type="text"  autofocus name="job" id="job">
+            </select>
+            <span id="error_job" class="text-danger"></span>
+          </div> -->
+
+        <div class="form-group">
+            <label for="grade"> Grade/Groups</label>
+            <input required type="text" autofocus name="grade" value="" id="grade" placeholder="Enter grade structure">
+            <span id="error_grade" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="notch"> Notches</label>
+            <input type="text" autofocus name="notch" value="" id="notch" placeholder="Enter notch">
+            <span id="error_notch" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="basic"> Base Salary </label>
+            <input required type="text" value="6000" autofocus name="basic" id="basic" placeholder="Enter base salary">
+            <span id="error_basic" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="salaryDesc">Description</label>
+            <textarea type="text" name="salaryDesc" required id="salaryDesc" class="charSiz"
+              placeholder="Enter salary description">For junior developer</textarea>
+            <span id="error_salaryDesc" class="text-danger"></span>
+            <!-- Look for it in the jo-title-desc.js file charSize -->
+            <!-- <div class="char-lef" id="salaryDescChar">200 characters remaining</div> -->
+          </div>
+          <fieldset>
+          <legend>Allowances</legend>
+          <div class="card-body" id="appendAllw" style="border: 1px solid black;">
+          <div class="form-group"  style="padding: 0px; margin: 0px 0px 0px -100px; float: right; ">
+            <button type="button" style="float: right;" class="btn btn-primary" id="addAllw"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+            </div>
+          <div class="form-group">
+                      <label for="allwTitle">Allowance title</label>
+                      <input type="text" name="allwTitle[]" value="" id="allwTitle_1" placeholder="Enter title for allowance">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="allwnce"> Allowance amount</label>
+                      <input type="text" name="allwnce[]" value="" id="allwnce_1" placeholder="Enter allowance amount">
+                    </div>
+                    </div>
+                  </fieldset>
+                </div>
+          <span id="allwErrors"></span>
+                
+      <div class="modal-footer">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="mode" id="salaryMode" value="">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="saveSalary" class="btn btn-primary">Save</button>
+      </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- Show edit salary structure -->
+<div class="modal fade" id="editSalary" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i> Updated Salary Structures</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="user-message user-message--error" style="display: none;"></div>
+        <form action="edit-salarystructure" id="updateSalary" method="POST" enctype="multipart/form-data">
+        <!-- <div class="form-group">
+            <label for="job"><i class="fas fa-briefcase"></i> Job Description </label>
+            <select required type="text"  name="editjob" id="editjob">
+            </select>
+            <span id="error_editjob" class="text-danger"></span>
+          </div> -->
+
+        <div class="form-group">
+            <label for="editgrade"><i class="fas fa-money-check"></i> Grade </label>
+            <input required type="text" autofocus name="editgrade" id="editgrade" placeholder="Enter grade structure">
+            <span id="error_editgrade" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="editnotch"><i class="fas fa-circle-notch"></i> Notch </label>
+            <input type="text" autofocus name="editnotch" id="editnotch" placeholder="Enter notch">
+            <span id="error_editnotch" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="basic"><i class="fas fa-money-check-alt"></i> Base Salary </label>
+            <input required type="text" name="editbasic" id="editbasic" placeholder="Enter base salary">
+            <span id="error_editbasic" class="text-danger"></span>
+          
+          </div>
+        
+          <div class="form-group">
+            <label for="salaryDesc"><i class="fas fa-briefcase"></i> Description</label>
+            <textarea type="text" name="editsalaryDesc" id="editsalaryDesc" class="charSiz" 
+              placeholder="Enter salary description"></textarea>
+            <span id="error_editsalaryDesc" class="text-danger"></span>
+            <!-- Look for it in the jo-title-desc.js file charSize -->
+            <!-- <div class="char-left" id="editsalaryDescChar">200 characters remaining</div> -->
+          </div>
+      </div>
+
+      <div class="modal-footer">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="salaID" id="salaID" value="">
+        <input type="hidden" name="mode" id="editsalaryMode" value="">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="editSalary" class="btn btn-primary">Save</button>
+      </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- Show allowance -->
+<div class="modal fade" id="addEditAllw-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title allw" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="user-message user-message--error" style="display: none;"></div>
+        <form action="postSaveAllowance" id="add-updateAllw" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="job"><i class="fas fa-money-check"></i> Salary Structure </label>
+            <select required type="text"  name="salStruct" id="salStruct">
+            </select>
+            <span id="error_salStruct" class="text-danger"></span>
+          </div>
+
+        <div class="form-group">
+            <label for="editgrade"> <i class="fas fa-money-check"></i> Allowance Title </label>
+            <input required type="text" autofocus name="allwTitle" id="allwTitle" placeholder="Enter title">
+            <span id="error_allwTitle" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="basic"> <i class="fas fa-money-check-alt"></i> Amount </label>
+            <input required type="text" name="amount" id="amount" placeholder="Enter amount">
+            <span id="error_amount" class="text-danger"></span>
+
+          </div>
+        
+          <!-- <div class="form-check">
+              <label class="radio-inline">
+                <input type="radio" name="state" value="update" checked> Update 
+              </label>
+            &emsp;
+              <label class="radio-inline">
+                <input type="radio" name="state" value="assoc"> Add
+              </label>
+          </div> -->
+      </div>
+
+      <div class="modal-footer">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="allwID" id="allwID" value="">
+        <input type="hidden" name="allwMode" id="allwMode" value="">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+        <button type="submit" id="editAllw" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+      </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- Show update tax form -->
+<div class="modal fade" id="editTax-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i> Edit Income Tax Structure</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="user-message user-message--error" style="display: none;"></div>
+        <form action="postSaveTax" id="update-tax" method="POST" enctype="multipart/form-data">
+            
+        <table class="layout display responsive-table">
+                            <thead class="table-dark" style="background-color:#191970;">
+                              <tr>
+                                <th>Parameters</th>
+                                <th>Amount (GHC)</th>
+                                <th>Rate %</th>
+                                </tr>
+                                </thead>
+                            <tbody style="background-color: white;" class="salaryTable">
+                            <tr class="">
+                            <th class="organisationnumber">First</th>
+                            <td><input required type="text" name="miniW" id="miniW" value="">
+                            <span id="error_miniW" class="text-danger"></span></td>
+                            <td>Nill</td>
+                        </tr>
+                        <tr>
+                            <th class="organisationnumber">Next</th>
+                            <td><input required type="text" name="nextOneAmt" id="nextOneAmt" id="nextOneAmt" value="">
+                            <span id="error_nextOneAmt" class="text-danger"></span>
+                            </td>
+                            <td><input required type="text" name="nextOneRate" id="nextOneRate" value="">
+                            <span id="error_nextOneRate" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="organisationnumber">Next</th>
+                            <td><input required type="text" name="nextTwoAmt" id="nextTwoAmt" value="">
+                            <span id="error_nextTwoAmt" class="text-danger"></span>
+                            </td>
+                            <td><input required type="text" name="nextTwoRate" id="nextTwoRate" value="">
+                            <span id="error_nextTwoRate" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="organisationnumber">Next</th>
+                            <td><input required type="text" name="nextThreeAmt" id="nextThreeAmt" value="">
+                            <span id="error_nextThreeAmt" class="text-danger"></span>
+                            </td>
+                            <td><input required type="text" name="nextThreeRate" id="nextThreeRate" value="">
+                            <span id="error_nextThreeRate" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="organisationnumber">Next</th>
+                            <td><input required type="text" name="nextFourAmt" id="nextFourAmt" value="">
+                            <span id="error_nextFourAmt" class="text-danger"></span>
+                            </td>
+                            <td><input required type="text" name="nextFourRate" id="nextFourRate" value="">
+                            <span id="error_nextFourRate" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="organisationnumber">Exceeding</th>
+                            <td><input required type="text" name="exceedAmt" id="exceedAmt" value=""><span id="error_exceedAmt" class="text-danger"></span>
+                            </td>
+                            <td><input required type="text" name="exceedRate" id="exceedRate" value="">
+                            <span id="error_exceedRate" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                  </table>
+      <div class="modal-footer">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="taxID" id="taxID" value="">
+        <input type="hidden" name="" id="" value="">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+        <button type="submit" id="updateTax" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+      </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Show update ssnit form -->
+<div class="modal fade" id="editSSNIT-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i> Edit SSNIT Structure</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="user-message user-message--error" style="display: none;"></div><br>
+        <form action="postSaveSSNIT" id="update-ssnit" method="POST" enctype="multipart/form-data">
+            
+        <table class="layout display responsive-table">
+                            <thead class="table-dark" style="background-color:#23233d;">
+                              <tr>
+                                <th>Tier</th>
+                                <th>Percentage %</th>
+                                <!-- <th>Rate %</th> -->
+                                </tr>
+                                </thead>
+                            <tbody style="background-color: white;" class="salaryTable">
+                            <tr class="">
+                              <th class="organisationnumber">Tier One</th>
+                              <td><input required type="text" name="t1" id="t1" value="">
+                              <span id="error_t1" class="text-danger"></span>
+                             </td>
+                            </tr>
+                            <tr class="">
+                              <th class="organisationnumber">Tier Two</th>
+                              <td><input required type="text" name="t2" id="t2" value=""><span id="error_t2" class="text-danger"></span>
+                              </td>
+                            </tr>
+                        </tbody>
+                  </table>
+      <div class="modal-footer">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="sstID" id="sstID" value="">
+        <input type="hidden" name="" id="" value="">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+        <button type="submit" id="updatessnit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+      </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Details of job title modal -->
+<div class="modal fade" id="subDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+
+        <div class="list-group appendDetails">
+
+
+        </div>
+        <br>
+      </div>
+      <div class="modal-footer" style="padding: 0px;">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- add new leave type -->
+<div class="modal fade" id="addLeaveType-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title allw" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="user-message user-message--error" style="display: none;"></div>
+        <form action="postSaveLeaveType" id="add-updateLeaveType" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="leaveType"> <i class="fas fa-filter"></i> Leave type </label>
+            <input required type="text" autofocus name="leaveType" id="leaveType" placeholder="Enter leave type">
+            <span id="error_leaveType" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="genderbased"> <i class="fas fa-user"></i> Gender based </label>
+            <select required type="text" name="genderbased" id="genderbased">
+            <option value="All">All</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            </select>
+            <span id="error_genderbased" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="carryon"> <i class="fas fa-info-circle"></i> Carry on </label>
+            <select required type="text" name="carryon" id="carryon">
+            <option value="0">No</option>
+            <option value="1">Yes</option >
+            </select>
+            <span id="error_carryon" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="nofdays"> <i class="fas fa-info-circle"></i> No. of days </label>
+            <input required type="number" name="nofdays" placeholder="Enter no. of days for leave." id="nofdays">
+            <span id="error_nofdays" class="text-danger"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="leaveDesc"> <i class="fas fa-list"></i> Description </label>
+            <textarea required type="text" name="leaveDesc" id="leaveDesc" placeholder="Enter description"></textarea>
+            <span id="error_leaveDesc" class="text-danger"></span>
+          </div>
+      </div>
+
+      <div class="modal-footer">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="leaveID" id="leaveID" value="">
+        <input type="hidden" name="leaveMode" id="leaveMode" value="">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+        <button type="submit" id="editAllw" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+      </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- Show update ssnit form -->
+<div class="modal fade" id="leaveDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i> Leave Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form action="approveReLeave" id="approveLev" method="POST" enctype="multipart/form-data">
+         <div class="form-group">
+                    <label style="color: blue;" id="leaType"></label>
+                    <label style="color: blue;" id="leaExp"></label>
+                    </div>
+
+                    <table border="0" style="border: none;">
+                    <tr>
+                        <td colspan="2">
+                        </td>
+                        </tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="fromDate">From</label>
+                            <input readonly type="text" required name="fromDateLev" id="fromDateLev">
+                            <span id="error_fromDateLev" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                    <div class="form-group">
+                        <label for="toDate">To</label>
+                        <input readonly type="text" required name="toDateLev" id="toDateLev">
+                        <span id="error_toDateLev" class="text-danger"></span>
+                    </div>
+                    </td>
+                        <tr>
+                        <td colspan="2">
+                        <span id="error_daysm" class="text-danger"></span>
+                        </td>
+                        </tr>
+
+                    </table>
+                    <div class="form-group">
+                        <label id="daysLev" for="daysLev">Days: </label>
+                    </div>
+                    <div class="form-group">
+                        <label id="apprBy" for="apprBy">Approved By: </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Reason</label>
+                        <textarea readonly type="text" name="reason" id="reasonLev" placeholder="Enter reason"></textarea>
+                        <span id="error_reasonLev" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">Remark</label>
+                        <textarea required type="text" name="remark" id="remarkLev" placeholder="Enter remark"></textarea>
+                        <span id="error_remarkLev" class="text-danger"></span>
+                    </div>
+                  <% if(user.role === 'Admin' || user.role === 'HOD'){ %>
+                    <div class="form-group statusLev">
+                        <label for="status">Status</label>
+                        <select required type="text" name="statusLev" id="statusLev">
+                          <option value="Approved">Approve</option>
+                          <option value="Rejected">Reject</option>
+                        </select>
+                        <span id="error_statusLev" class="text-danger"></span>
+                    </div>
+
+                    <span id="applyLeaErrors"></span>
+
+      <div class="modal-footer">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="leaveAppID" id="leaveAppID" value="">
+        <input type="hidden" name="emID" id="emID" value="">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+        <button type="submit" id="updatessnit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+      </div>
+      <% } %>
+
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="showSheet" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <form action="" id="showAttendSheet" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="markedDate">Date:</label>
+            <input type="date" required name="markedDate" id="markedDate">
+            <span id="error_markedDate" class="text-danger"></span>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        </div>
+
+      <div class="modal-footer" style="padding: 0px;">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+        <button type="submit" id="" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="attDetails" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-file-alt"></i> Attendance Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body appendAttDetails">
+      
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Terminal -->
+<div class="modal fade" id="terminalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #4682B4;">
+                <h4 class="modal-title term-title" id="exampleModalLabel"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="tab-pane active" id="basic_info">
+    <div class="panel panel-default">
+    <div class="panel-heading" style="font-size: 15px;">Terminal manager</div>
+    <div class="panel-body">
+
+    <form action="/add-terminal" method="POST" id="addTerminal">
+    <div style="width: inherit;" class="user-message user-message--error" style="display: none;"></div>
+    <div class="row" style="background-color:white;">
+    <div class=" col-lg-12 col-md-12">
+
+    <div class="form-group">
+    <label for="termName">Terminal name</label>
+    <input required type="text" name="termName" id="termName" placeholder="Enter terminal name">
+    <span id="error_termName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="termLocation">Terminal location</label>
+    <input required type="text" name="termLocation" id="termLocation" placeholder="Enter terminal location">
+    <span id="error_termLocation" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="termNumber">Terminal number</label>
+    <input required type="text" name="termNumber" id="termNumber" placeholder="Enter terminal number">
+    <span id="error_termNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="termSerial">Serial number</label>
+    <input required type="text" name="termSerial" id="termSerial" placeholder="Enter terminal serial number">
+    <span id="error_termSerial" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="termAPI">Endpoint</label>
+    <textarea required type="text" name="termAPI" id="termAPI" placeholder="Enter terminal endpoint"></textarea>
+    <span id="error_termAPI" class="text-danger"></span>
+    </div>
+    
+    </div>
+    <br><br><br>
+
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    
+    <!-- </div> -->
+    </div>
+    <div align="center">
+    <button type="submit" name="" id=""
+    class = "btn btn-primary">Save </button> 
+    <!-- <button type="button" name="cls" id="cls"
+    class = "btn btn-danger"> Reset </button>  -->
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<!-- Shift -->
+<div class="modal fade" id="shiftModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #4682B4;">
+                <h4 class="modal-title shift-title" id="exampleModalLabel"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="tab-pane active" id="basic_info">
+    <div class="panel panel-default">
+    <div class="panel-heading" style="font-size: 15px;"></div>
+    <div class="panel-body">
+
+    <form action="add-shift" method="POST" id="addShift">
+    <div style="width: inherit;" class="user-message user-message--error" style="display: none;"></div>
+    <div class="row" style="background-color:white;">
+    <div class=" col-lg-6 col-md-6">
+
+    <div class="form-group">
+    <label for="shiftName">Shift name</label>
+    <input required type="text" name="shiftName" id="shiftName" placeholder="Enter shift name">
+    <span id="error_shiftName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="startHour">Start hour</label>
+    <select required type="text" name="startHour" id="startHour">
+    </select>
+    <span id="error_startHour" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="startMin">Start minutes</label>
+    <select required type="text" name="startMin" id="startMin">
+    </select>
+    <span id="error_startMin" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="endHour">End hour</label>
+    <select required type="text" name="endHour" id="endHour">
+    </select>
+    <span id="error_endHour" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="endMin">End minutes</label>
+    <select required type="text" name="endMin" id="endMin">
+    </select>
+    <span id="error_endMin" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="shiftDuration">Shift Duration</label>
+    <select required type="text" name="shiftDuration" id="shiftDuration">
+    </select>
+    <span id="error_shiftDuration" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="gracePeriod">Grace period (minutes)</label>
+    <select required type="text" name="gracePeriod" id="gracePeriod">
+    </select>
+    <span id="error_gracePeriod" class="text-danger"></span>
+    </div>
+    
+    <span style="color: black;">Applicable days: </span><hr style="margin: 0px;">
+    <div class="form-check">
+        <label class="radio-inline">
+          <input style="border: 0px solid white;" type="checkbox" name="days[]" id="sunday" value="Sunday">
+           Sunday
+        </label>
+
+        <label class="radio-inline">
+          <input style="border: 0px solid white;" type="checkbox" name="days[]" id="monday" value="Monday">
+           Monday
+        </label>
+
+        <label class="radio-inline">
+          <input style="border: 0px solid white;" type="checkbox" name="days[]" id="tuesday" value="Tuesday">
+           Tuesday
+        </label>
+
+        <label class="radio-inline">
+          <input style="border: 0px solid white;" type="checkbox" name="days[]" id="wednesday" value="Wednesday">
+           Wednesday
+        </label>
+
+        <label class="radio-inline">
+          <input style="border: 0px solid white;" type="checkbox" name="days[]" id="thursday" value="Thursday">
+           Thursday
+        </label>
+
+        <label class="radio-inline">
+          <input style="border: 0px solid white;" type="checkbox" name="days[]" id="friday" value="Friday">
+           Friday
+        </label>
+
+        <label class="radio-inline">
+          <input style="border: 0px solid white;" type="checkbox" name="days[]" id="saturday" value="Saturday">
+           Saturday
+        </label>
+            </div>
+          <span id="error_days" class="text-danger"></span>
+
+    </div>
+
+    <div class=" col-lg-6 col-md-6">
+    <br><br>
+         <!-- <div class="form-group"> -->
+    <div class="form-check">
+        <label class="radio-inline">
+          <input style="border: 0px solid white;" type="checkbox" name="break" id="break" value="1">
+           Allow break?
+        </label>
+            <span id="error_break" class="text-danger"></span>
+    </div>
+    <!-- </div> -->
+    <div class="break" style="display: none;">
+    
+    </div><br>
+
+    <!-- <div class="form-group"> -->
+    <div class="form-check">
+        <label class="radio-inline">
+          <input style="border: 0px solid white;" type="checkbox" id="overtime" name="overtime" value="1">
+           Allow overtime?
+        </label>
+            <span id="error_overtime" class="text-danger"></span>
+    </div>
+    <!-- </div> -->
+    <div class="overtime">
+    
+    </div>
+
+
+    </div>
+
+    <br><br><br>
+
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="shiftMode" id="shiftMode" value="addShift">
+    <input type="hidden" name="shiftID" id="shiftID" value="">
+    
+    <!-- </div> -->
+    </div>
+    <div align="center">
+    <button type="submit" name="" id=""
+    class = "btn btn-primary">Save </button> 
+    <!-- <button type="button" name="cls" id="cls"
+    class = "btn btn-danger"> Reset </button>  -->
+    </div>
+
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+                </div>
+            </div>
+</div>
+
+<div class="modal fade" id="shiftDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header" style="color: white; background-color: #4682B4;">
+                <h4 class="modal-title shift-title" id="exampleModalLabel"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div> -->
+            <style>
+            .hr {margin: 0px;}
+            .lab {color: #000000;}
+            </style>
+
+      <div class="modal-body appendContent">
+      
+      </div>
+    <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+    </div>
+    </div>
+   </div>
+</div>
+
+<!-- add event to calendar -->
+<div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #4682B4;">
+                <h4 class="modal-title addEvent-title" id="exampleModalLabel"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="tab-pane active" id="basic_info">
+    <div class="panel panel-default">
+    <div class="panel-heading" style="font-size: 15px;"></div>
+    <div class="panel-body">
+
+    <form action="add-event" method="POST" id="addEvent">
+    <div style="width: inherit;" class="user-message user-message--error" style="display: none;"></div>
+    <div class="row" style="background-color:white;">
+    <div class=" col-lg-12 col-md-12">
+
+    <div class="form-group">
+    <label for="eventName">Holiday name</label>
+    <input required type="text" name="eventName" id="eventName" placeholder="Enter holiday name">
+    <span id="error_eventName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="eventDate">Date</label>
+    <input required type="date" class="chngTyp" name="eventDate" id="eventDate" placeholder="Enter date">
+    <span id="error_eventDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="occur">Holiday occurrence</label>
+    <select required type="text" name="occur" id="occur" >
+      <option value="1">Once</option>
+      <option value="0">Yearly</option>
+    </select>
+    <span id="error_occur" class="text-danger"></span>
+    </div>
+
+    </div>
+    <br><br><br>
+
+    <input type="hidden" required name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" required name="eventMode" id="eventMode" value="add">
+    <input type="hidden" required name="eventId" id="eventId" value="">
+    
+    <!-- </div> -->
+    </div>
+    <div align="center">
+    <button type="submit" name="" id=""
+    class = "btn btn-primary">Save </button> 
+    <!-- <button type="button" name="cls" id="cls"
+    class = "btn btn-danger"> Reset </button>  -->
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!-- Task Addd or Edit task -->
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #4682B4;">
+                <h4 class="modal-title task-title" id="exampleModalLabel"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="tab-pane active" id="basic_info">
+    <div class="panel panel-default">
+    <div class="panel-heading" style="font-size: 15px;"></div>
+    <div class="panel-body">
+
+    <form action="add-task" method="POST" id="addTask">
+    <div style="width: inherit;" class="user-message user-message--error" style="display: none;"></div>
+    <div class="row" style="background-color:white;">
+    <div class=" col-lg-4 col-md-4">
+
+    <div class="form-group">
+    <label for="taskName">Task name</label>
+    <input required type="text" name="taskName" id="taskName" placeholder="Enter task name">
+    <span id="error_taskName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="assignTo">Assign to</label>
+    <select required type="text" name="assignTo" id="assignTo">
+    </select>
+    <span id="error_assignTo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <label for="dueDate">Due date</label>
+    <input required type="text" class="chngTyp" name="dueDate" id="dueDate" >
+    <span id="error_dueDate" class="text-danger"></span>
+    </div>
+    </div>
+
+    <div class=" col-lg-8 col-md-8">
+    <div class="form-group">
+				<label for="">Description</label>
+					<textarea name="taskDescript" id="taskDescript" cols="30" rows="10" class="summernote form-control">
+				  </textarea>
+    <span id="error_taskDescript" class="text-danger"></span>
+					</div>
+    </div>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="taskMode" id="taskMode" value="addMode">
+    <input type="hidden" name="taskID" id="taskID" value="">
+    
+    <!-- </div> -->
+    </div>
+    <div align="center">
+    <button type="submit" name="" id=""
+    class = "btn btn-primary">Submint </button> 
+    <!-- <button type="button" name="cls" id="cls"
+    class = "btn btn-danger"> Reset </button>  -->
+    </div>
+
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+                </div>
+            </div>
+</div>
+
+<!-- View task -->
+<div class="modal fade" id="taskDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <style>
+            .hr {margin: 0px;}
+            .lab {color: #000000;}
+            </style>
+      <div class="modal-body appendTaskContent">
+        
+      </div>
+    <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+    </div>
+    </div>
+   </div>
+</div>
+
+<!-- Add Progress -->
+<div class="modal fade" id="taskProgressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color: #4682B4;">
+                <h4 class="modal-title taskPro-title" id="exampleModalLabel"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true" style="color: white;">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="tab-pane active" id="basic_info">
+    <div class="panel panel-default">
+    <div class="panel-heading" style="font-size: 15px;"></div>
+    <div class="panel-body">
+
+    <form action="add-proogres" method="POST" id="addProgress">
+    <div style="width: inherit;" class="user-message user-message--error" style="display: none;"></div>
+    <div class="row" style="background-color:white;">
+    <div class=" col-lg-4 col-md-4">
+
+    <div class="form-group">
+    <label for="taskName">Task name</label>
+    <input readonly type="text" name="" id="taskTaskName" >
+    </div>
+
+    <div class="form-group">
+    <label for="assignTo">Assign to</label>
+    <input readonly type="text" id="taskAssignTo">
+    </div>
+
+    <div class="form-group">
+    <label for="dueDate">Due date</label>
+    <input readonly type="text" name="" id="taskDueDate" >
+    </div>
+
+    <div class="form-check">
+    <label class="radio-inline">
+        <input style="border: 0px solid white;" type="checkbox" name="taskStatus" id="taskStatus" value="1">
+        Completed
+    </label><br>
+      <span id="error_taskStatus" class="text-danger"></span>
+    </div>
+    </div>
+
+    <div class=" col-lg-8 col-md-8">
+    <div class="form-group">
+				<label for="">Progress description</label>
+					<textarea name="progressDescript" id="progressDescript" cols="30" rows="10" class="summernote form-control">
+				  </textarea>
+    <span id="error_progressDescript" class="text-danger"></span>
+					</div>
+    </div>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <!-- <input type="hidden" name="taskMode" id="taskMode" value="addMode"> -->
+    <input type="hidden" name="taskProID" id="taskProID" value="">
+    
+    <!-- </div> -->
+    </div>
+    <div align="center">
+    <button type="submit" name="" id=""
+    class = "btn btn-primary">Submint </button> 
+    <!-- <button type="button" name="cls" id="cls"
+    class = "btn btn-danger"> Reset </button>  -->
+    </div>
+
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+                </div>
+            </div>
+</div>

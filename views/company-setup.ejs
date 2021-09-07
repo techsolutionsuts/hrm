@@ -1,0 +1,164 @@
+<%- include('./includes/header.ejs') %>
+    <% if(userDetails.length) {%>
+        <%- include('./includes/navbar.ejs') %>
+
+            <style>
+                .hide {
+                    display: none;
+                }
+            </style>
+
+            <%- include('./setup.ejs') %>
+
+                <%- include('./includes/scripts.ejs') %>
+                    <%- include('./includes/footer.ejs') %>
+                        <% }  else {%>
+
+
+                            <!-- For fresh setup -->
+                            <div class="container-fluid mainPage" style="background-color: rgb(93, 107, 107);">
+
+                                <div class="hiden">
+                                    <%- include('./includes/loader.ejs') %>
+                                </div>
+
+                                <form action="/create-company" id="createComp" method="POST" enctype="multipart/form-data">
+                                    <h4 class="modal-title" style="text-align: center; list-style: none; text-decoration: underline; cursor: auto; text-underline-offset: none; color: white;" id="exampleModalLabel">Provide Info for Company Setup</h4>
+
+                                    <div class="row" style="background-color: white;">
+
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label> Date Incorperated </label>
+                                                <input type="date" required name="date" id="date" value="03/04/2015">
+                                                <span id="error_date" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Company name </label>
+                                                <input type="text" required name="company_name" id="company_name" value="Staidorf Consult" placeholder="Enter company name">
+                                                <span id="error_company_name" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Staff ID Type</label>
+                                                <select type="text" required name="staff_id" id="staff_id">
+                                <option value="">Select staff ID type</option>
+                                <option selected value="Auto">Automatic staff ID generation</option>
+                                <option value="Manual">Manual</option>
+                            </select>
+                                                <span id="error_staff_id" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Company Initail </label>
+                                                <input type="text" required name="company_ini" id="tin" value="SC" placeholder="Enter company initials example SC">
+                                                <span id="error_company_ini" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label> TIN </label>
+                                                <input type="text" required name="tin" id="tin" value="TN-848474674" placeholder="Enter company TIN">
+                                                <span id="error_tin" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Reg. Number </label>
+                                                <input type="text" required name="reg_number" value="RG-85785757575" id="reg_number" placeholder="Enter company registration number">
+                                                <span id="error_reg_number" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Company type</label>
+                                                <select type="text" required name="company_type" id="company_type">
+                                <option value="">Select company type</option>
+                                <option selected value="Sole Proprietorship">Sole Proprietorship</option>
+                                <option value="Partnership">Partnership</option>
+                                <option value="Limited Partnership">Limited Partnership</option>
+                                <option value="Corporation">Corporation</option>
+                                <option value="Limited Liability Company">Limited Liability Company</option>
+                                <option value="Nonprofit Organization">Nonprofit Organization</option>
+                                <option value="Cooperative">Cooperative</option>
+                            </select>
+                                                <span id="error_company_type" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Director / Mgr</label>
+                                                <input type="text" required name="direct" id="direct" value="Schandorf Sai" placeholder="Enter company director or manager">
+                                                <span id="error_direct" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label>Phone number</label>
+                                                <input type="text" required name="contact" id="contact" value="0242602464" placeholder="Enter phone contact">
+                                                <span id="error_contact" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" required name="email" id="email" value="staidor@consult.com" placeholder="Enter company official email">
+                                                <span id="error_email" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Website</label>
+                                                <input type="url" name="website" id="website" value="http://staidorfconsult.com" placeholder="Enter company official website">
+                                                <span id="error_website" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Region</label>
+                                                <select type="text" required name="region" id="region">
+                                <option value="">Select region</option>
+                                <option selected value="Greater Accra Region">Greater Accra Region</option>
+                                <option value="Bono Region">Bono Region</option>
+                                <option value="Ashanti Region">Ashanti Region</option>
+                                <option value="Central Region">Central Region</option>
+                                <option value="Eastern Region">Eastern Region</option>
+                                <option value="Western Region">Western Region</option>
+                                <option value="Northern Region">Northern Region</option>
+                                <option value="Upper East Region">Upper East Region</option>
+                                <option value="Upper West Region">Upper West Region</option>
+                                <option value="Volta Region">Volta Region</option>
+                                <option value="North East Region">North East Region</option>
+                                <option value="Savannah Region">Savannah Region</option>
+                                <option value="Bono East Region">Bono East Region</option>
+                                <option value="Ahafo Region">Ahafo Region</option>
+                                <option value="Western North Region">Western North Region</option>
+                                <option value="Oti Region">Oti Region</option>
+                            </select>
+                                                <span id="error_region" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>City/Town</label>
+                                                <input type="text" required name="city" id="city" value="Accra" placeholder="Enter city or town">
+                                                <span id="error_city" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Digital address code</label>
+                                                <input type="text" required name="dac" id="dac" value="GT-00-40-345" placeholder="Enter digital address code">
+                                                <span id="error_dac" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <textarea type="text" required name="address" id="address" rows="1">Osu old village</textarea>
+                                                <span id="error_address" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="imageUrl">Logo</label>
+                                                <input type="file" required name="company_logo" id="image" value="">
+                                                <span id="error_company_logo" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="user-message user-message--error" style="display: none;"></div>
+
+                                    <div align="center">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <input type="hidden" name="compMode" id="compMode" value="setup">
+                                        <button type="submit" id="saveComp" class="btn btn-primary">Continue</button>
+                                    </div>
+                                </form>
+
+                                <%- include('./includes/scripts.ejs') %>
+                                    <%- include('./includes/footer.ejs') %>
+                            </div>
+                            <%}%>

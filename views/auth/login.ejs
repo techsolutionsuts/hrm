@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        <%= pageTitle %>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/login-style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/vendor/fontawesome-free/css/all.min.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <!-- <script src="/vendor/fontawesome-free/js/a81368914c.js"></script> -->
+    <script src="/vendor/fontawesome-free/js/all.min.js"></script>
+    <link rel="icon" type="image/jpg" href="/img/ac1.png">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+
+</head>
+
+<body style="background-image: url('/img/IMG_6339.JPG'); padding: 0%; margin: 0%;">
+    <!-- <img class="wave" src="/img/login_logo.jpg"> -->
+
+    <div class="modal fade" id="sessionOut" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border-radius: 0px; border: 2px solid white;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body" style="font-size:25px;">
+                    <span id="timeout-message"></span>
+                    <!-- <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="container">
+        <div class="img">
+            <!-- <img src="/img/login_logo.jpg"> -->
+            <!-- bg.svg-->
+        </div>
+        <div class="login-content">
+            <form action="login" method="POST" style="margin: 20%;">
+                <input type="text" hidden id="userui" value="">
+                <input type="text" hidden id="timeoutsecond" value="">
+
+                <div style="background-color:white; margin: -2%; border: 2px solid #4771fa; border-radius: 25px;">
+                <img style="margin: 3%;" src="/img/log.png">
+                <!-- <h2 class="title">Staidorf HRM</h2> -->
+                <img class="img" src="/img/hrmlogo.png">
+                <% if (errorMessage) { %>
+                    <br>
+                    <div class="user-message user-message--error" style="width: inherit;">
+                        <%= errorMessage %>
+                    </div>
+                    <% } %>
+                        <br>
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Username/Email</h5>
+                                <input required type="email" class="<%= validationErrors.find(e => e.param == 'email') ? 'invalid' : '' %> input" type="email" name="email" value="<%= oldInput.email %>">
+                            </div>
+                        </div>
+                        <div class="input-div pass">
+                            <div class="i">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Password</h5>
+                                <input required type="password" name="password" class="<%= validationErrors.find(e => e.param == 'password') ? 'invalid' : '' %> input" value="<%= oldInput.password %>">
+                            </div>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <!-- <input type="hidde" name="_csr" id="csrftken" value=""> -->
+                        </div>
+                        <a href="/requestPassResetForm" style="color: red;"><i class="fa fa fa-lock-open"></i>Forgot Password?</a>
+                        <input type="submit" class="btn" value="Login">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/jquery/jquery-ui.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/login-main.js"></script>
+    <script src="/js/sessionTimeout.js"></script>
+    <script src="/js/timeout.js"></script>
+</body>
+
+</html>
